@@ -2,26 +2,15 @@ package main
 
 import (
 	luhnalgorithm "credit-card-validator/luhn_algorithm"
-	"fmt"
 )
 
 func main() {
-	const express = require('express');
-	const app = express();
+	// Valid number
+	luhnalgorithm.LuhnAlgorithm(79927398713)
 
-	app.use(express.json());
+	// Invalid number (invalid lenght)
+	luhnalgorithm.LuhnAlgorithm(123455)
 
-	app.get('/validate-card', (req, res) => {
-	const {cardNumber} = req.query;
-	if (!cardNumber) {
-		return res.status(400).json({ error: 'Missing credit card number' });
-	}
-	const isValid = luhn(cardNumber);
-	res.json({isValid});
-	});
-
-	app.listen(3000, () => {
-	console.log('Server listening on port 3000');
-	});
-
+	// Invalid number
+	luhnalgorithm.LuhnAlgorithm(79994566312)
 }
